@@ -1,0 +1,18 @@
+{
+  "name": "BlackjackGame",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "James Groves <triskept@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development --content-base docs/ --open --hot"
+  },
+  "dependencies": {
+    "blackjack-dealer-logic": "^1.1.4"
+  }
+}
