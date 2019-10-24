@@ -10,6 +10,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
+    "build": "webpack --mode production --content-base docs/ --output-path docs/",
     "start": "webpack-dev-server --mode development --content-base docs/ --open --hot"
   },
   "dependencies": {
