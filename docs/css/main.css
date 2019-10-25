@@ -1,0 +1,16 @@
+body{
+    background-color: green;
+}
+
+#wrapper {
+    max-width: 800px;
+    margin-top: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    background-color: grey;
+}
+
+#app {
+    display: block;
+    text-align: center;
+}
