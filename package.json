@@ -1,5 +1,5 @@
 {
-  "name": "BlackjackGame",
+  "name": "blackjackgame",
   "version": "1.0.0",
   "main": "index.js",
   "author": "James Groves <triskept@gmail.com>",
@@ -14,6 +14,7 @@
     "start": "webpack-dev-server --mode development --content-base docs/ --open --hot"
   },
   "dependencies": {
-    "blackjack-dealer-logic": "^1.1.4"
+    "blackjack-dealer-logic": "^1.1.4",
+    "playing-card-deck-generator": "^2.0.1"
   }
 }
