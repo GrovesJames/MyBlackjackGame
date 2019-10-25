@@ -3,6 +3,7 @@ import blackjack from "blackjack-dealer-logic"
 export default () =>{
     const game = blackjack.singleDeckGame
     let gameIsRunning = false
+    const result = blackjack.Result
     const startButton = document.getElementById("btn-play")
     const hitButton = document.getElementById("btn-hit")
     const standButton = document.getElementById("btn-stand")
@@ -41,18 +42,38 @@ export default () =>{
         const yourcardDisplay2 = document.getElementById("yourCard2")
         yourcardDisplay2.innerHTML = `You are showing: ${game.getUserHandValue()}`
     }
-    
+
     standButton.onclick = function(){
         game.standUser();
         game.evaluateUser();
         const yourcardDisplay3 = document.getElementById("yourCard3")
         yourcardDisplay3.innerHTML = `You are showing: ${game.getUserHandValue()}`
+
+        game.settleDealerHand()
+    
+        const cardDisplay = document.getElementById("dealerCards")
+        cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerHandValue()}`
+
+        switch(game.outcome()){
+            case result.LOSS:
+                const resultDisplay1 = document.getElementById("result")
+                resultDisplay1.innerHTML = `You lost`            
+                game.resetAnte()
+                break
+            case result.PUSH:
+                 const resultDisplay2 = document.getElementById("result")
+                 resultDisplay2.innerHTML = `Push, you got your money back`            
+                 game.pushHand()
+                break
+            case result.WIN:
+                 const resultDisplay3 = document.getElementById("result")
+                 resultDisplay3.innerHTML = `You win`            
+                 game.userWin()
+                break
+            default:
+                break
+        }
     }
-
-    game.settleDealerHand()
-
-    const cardDisplay = document.getElementById("dealerCards")
-    cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerHandValue()}`
 
 
 
