@@ -6,31 +6,22 @@
     --blue: #88bcd9;
     --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
 }
-
 body{
     background-color: green;
 }
-
-/* #username{
-
-} */
-
 #header{
     font-size: 3rem;
     text-align: center;
 }
-
 #username{
     text-align: center;
     font-size: 2rem;
 }
-
 #wrapper{
     margin-right: 40%;
     margin-left: 40%;
     margin-top: 2%;
 }
-
 #console {
     min-height: 200px;
     min-width: 200px;
@@ -39,11 +30,7 @@ body{
     border: 3px solid black;
     box-shadow: var(--shadow);
 }
-
 #app, #interface {
     display: block;
     text-align: center;
-}
-
-#app{
 }

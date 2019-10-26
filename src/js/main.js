@@ -1,8 +1,6 @@
 import blackjack from "blackjack-dealer-logic"
-
 export default () =>{
     const game = blackjack.singleDeckGame
-    let gameIsRunning = false
     const result = blackjack.Result
     const startButton = document.getElementById("btn-play")
     const hitButton = document.getElementById("btn-hit")
@@ -20,39 +18,26 @@ export default () =>{
     const history = document.getElementById("history")
     history.innerHTML = gameHistory;
 
-    alert("Welcome to Blackjack")
-    alert("Press play to begin")
-    
-    
+    alert("Welcome to Blackjack!! Press play to begin")
     nameButton.onclick = function(){
         const userName = window.prompt("Enter your name: ");
         nameDisplay.innerText = `with ${userName}`
     }
-
     startButton.onclick = function(){
         var wager = window.prompt("Enter your wager (out of 200): ");
         game.receiveAnte(wager)
-
-        setTimeout(function() {wagerDisplay.innerText =`Your wager is: ${wager}`}, 500)
-
         game.deal()
-
+        setTimeout(function() {wagerDisplay.innerText =`Your wager is: ${wager}`}, 500)
         setTimeout(function() {cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerCardUp()}`},1000)
-
         setTimeout(function() {yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`}, 2000)
-        
         setTimeout(function() {ques1.innerHTML = `Whats your move? Press a button to continue `},3500)        
     }
-
     hitButton.onclick = function (){
         game.hitUser();
         game.evaluateUser();
-        yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`
-
         game.settleDealerHand()
-    
+        yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`
         cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerHandValue()}`
-
         switch(game.outcome()){
             case result.LOSS:
                 resultDisplay.innerHTML = `You lost`  
@@ -74,16 +59,12 @@ export default () =>{
         }
         game.resetPlayers()
     }
-
     standButton.onclick = function(){
         game.standUser();
         game.evaluateUser();
-        yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`
-
         game.settleDealerHand()
-    
+        yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`
         cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerHandValue()}`
-
         switch(game.outcome()){
             case result.LOSS:
                 resultDisplay.innerHTML = `You lost` 
@@ -105,16 +86,13 @@ export default () =>{
         }
         game.resetPlayers()
     }
-
     doubleButton.onclick = function(){
         game.doubleUser();
         game.evaluateUser();
-        dblWager.innerHTML =`Your wager is: ${game.getAnte()}`
-
         game.settleDealerHand()
-    
+        wagerDisplay.innerText =`You doubled down! Wager: ${game.getAnte()}`
+        yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`
         cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerHandValue()}`
-
         switch(game.outcome()){
             case result.LOSS:
                 resultDisplay.innerHTML = `You lost`
