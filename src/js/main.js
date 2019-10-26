@@ -8,127 +8,132 @@ export default () =>{
     const hitButton = document.getElementById("btn-hit")
     const standButton = document.getElementById("btn-stand")
     const doubleButton = document.getElementById("btn-double")
-    let wager = blackjack.wager 
-   
+    const nameButton = document.getElementById("btn-name")
+    const nameDisplay = document.getElementById("username")
+    const wagerDisplay = document.getElementById('text')
+    const cardDisplay = document.getElementById("dealerCards")
+    const yourcardDisplay = document.getElementById("yourCards")
+    const ques1 = document.getElementById("Q1")
+    const resultDisplay = document.getElementById("result")
+    const dblWager = document.getElementById("dblWager")
+    var gameHistory = []
+    const history = document.getElementById("history")
+    history.innerHTML = gameHistory;
+
     alert("Welcome to Blackjack")
     alert("Press play to begin")
-
-
+    
+    
+    nameButton.onclick = function(){
+        const userName = window.prompt("Enter your name: ");
+        nameDisplay.innerText = `with ${userName}`
+    }
 
     startButton.onclick = function(){
-        document.getElementById("text")
-        // text.innerText = `The amount of money in your wallet: ${game.getUserChips()}`
-        wager = window.prompt("Enter your wager: ");
+        var wager = window.prompt("Enter your wager (out of 200): ");
         game.receiveAnte(wager)
 
-        setTimeout(function() {const wagerDisplay = document.getElementById('text')
-        wagerDisplay.innerText =`Your wager is: ${wager}`}, 2000)
+        setTimeout(function() {wagerDisplay.innerText =`Your wager is: ${wager}`}, 500)
 
         game.deal()
 
-        setTimeout(function() {const cardDisplay = document.getElementById("dealerCards")
-        cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerCardUp()}`},2000)
+        setTimeout(function() {cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerCardUp()}`},1000)
 
-        const yourcardDisplay = document.getElementById("yourCards")
-        yourcardDisplay.innerHTML = `You are showing: ${game.getUserHandValue()}`
+        setTimeout(function() {yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`}, 2000)
         
-        setTimeout(function() {const ques1 = document.getElementById("Q1")
-        ques1.innerHTML = `Whats your move?: `},5000)        
+        setTimeout(function() {ques1.innerHTML = `Whats your move? Press a button to continue `},3500)        
     }
 
     hitButton.onclick = function (){
         game.hitUser();
         game.evaluateUser();
-        const yourcardDisplay2 = document.getElementById("yourCard2")
-        yourcardDisplay2.innerHTML = `You are showing: ${game.getUserHandValue()}`
+        yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`
 
         game.settleDealerHand()
     
-        const cardDisplay = document.getElementById("dealerCards")
         cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerHandValue()}`
 
         switch(game.outcome()){
             case result.LOSS:
-                const resultDisplay1 = document.getElementById("result")
-                resultDisplay1.innerHTML = `You lost`            
+                resultDisplay.innerHTML = `You lost`  
+                gameHistory.push("lost")          
                 game.resetAnte()
                 break
             case result.PUSH:
-                 const resultDisplay2 = document.getElementById("result")
-                 resultDisplay2.innerHTML = `Push, you got your money back`            
+                 resultDisplay.innerHTML = `Push, you got your money back`
+                 gameHistory.push("push")            
                  game.pushHand()
                 break
             case result.WIN:
-                 const resultDisplay3 = document.getElementById("result")
-                 resultDisplay3.innerHTML = `You win`            
+                 resultDisplay.innerHTML = `You win`
+                 gameHistory.push("win")                        
                  game.userWin()
                 break
             default:
                 break
         }
+        game.resetPlayers()
     }
 
     standButton.onclick = function(){
         game.standUser();
         game.evaluateUser();
-        const yourcardDisplay3 = document.getElementById("yourCard3")
-        yourcardDisplay3.innerHTML = `You are showing: ${game.getUserHandValue()}`
+        yourcardDisplay.innerHTML = `You have: ${game.getUserHandValue()}`
 
         game.settleDealerHand()
     
-        const cardDisplay = document.getElementById("dealerCards")
         cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerHandValue()}`
 
         switch(game.outcome()){
             case result.LOSS:
-                const resultDisplay1 = document.getElementById("result")
-                resultDisplay1.innerHTML = `You lost`            
+                resultDisplay.innerHTML = `You lost` 
+                gameHistory.push("lost")                     
                 game.resetAnte()
                 break
             case result.PUSH:
-                 const resultDisplay2 = document.getElementById("result")
-                 resultDisplay2.innerHTML = `Push, you got your money back`            
+                 resultDisplay.innerHTML = `Push, you got your money back`
+                 gameHistory.push("push")                        
                  game.pushHand()
                 break
             case result.WIN:
-                 const resultDisplay3 = document.getElementById("result")
-                 resultDisplay3.innerHTML = `You win`            
+                 resultDisplay.innerHTML = `You win` 
+                 gameHistory.push("win")                                   
                  game.userWin()
                 break
             default:
                 break
         }
+        game.resetPlayers()
     }
 
     doubleButton.onclick = function(){
         game.doubleUser();
         game.evaluateUser();
-        const dblWager = document.getElementById("dblWager")
-        dblWager.innerHTML =`Your wager is: ${wager}`
+        dblWager.innerHTML =`Your wager is: ${game.getAnte()}`
 
         game.settleDealerHand()
     
-        const cardDisplay = document.getElementById("dealerCards")
         cardDisplay.innerHTML = `Dealer is showing: ${game.getDealerHandValue()}`
 
         switch(game.outcome()){
             case result.LOSS:
-                const resultDisplay1 = document.getElementById("result")
-                resultDisplay1.innerHTML = `You lost`            
+                resultDisplay.innerHTML = `You lost`
+                gameHistory.push("lost")                                 
                 game.resetAnte()
                 break
             case result.PUSH:
-                 const resultDisplay2 = document.getElementById("result")
-                 resultDisplay2.innerHTML = `Push, you got your money back`            
+                 resultDisplay.innerHTML = `Push, you got your money back`
+                 gameHistory.push("push")                                    
                  game.pushHand()
                 break
             case result.WIN:
-                 const resultDisplay3 = document.getElementById("result")
-                 resultDisplay3.innerHTML = `You win`            
+                 resultDisplay.innerHTML = `You win`
+                 gameHistory.push("win")                                    
                  game.userWin()
                 break
             default:
                 break
         }
+        game.resetPlayers()
     }
 }
