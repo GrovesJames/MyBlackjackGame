@@ -22,8 +22,9 @@ export default () =>{
         nameDisplay.innerText = `with ${userName}`
     }
     startButton.onclick = function(){
-        var wager = window.prompt("Enter your wager (out of 200): ");
-        history.innerHTML = gameHistory;
+        var wager = window.prompt("Enter your wager (out of 200): ")
+        history.innerHTML = gameHistory
+        resultDisplay.innerHTML = ``
         game.receiveAnte(wager)
         game.deal()
         setTimeout(function() {wagerDisplay.innerText =`Your wager is: ${wager}`}, 500)
