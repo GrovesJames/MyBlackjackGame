@@ -13,11 +13,9 @@ export default () =>{
     const yourcardDisplay = document.getElementById("yourCards")
     const ques1 = document.getElementById("Q1")
     const resultDisplay = document.getElementById("result")
-    const dblWager = document.getElementById("dblWager")
     var gameHistory = []
     const history = document.getElementById("history")
-    history.innerHTML = gameHistory;
-
+    
     alert("Welcome to Blackjack!! Press play to begin")
     nameButton.onclick = function(){
         const userName = window.prompt("Enter your name: ");
@@ -25,6 +23,7 @@ export default () =>{
     }
     startButton.onclick = function(){
         var wager = window.prompt("Enter your wager (out of 200): ");
+        history.innerHTML = gameHistory;
         game.receiveAnte(wager)
         game.deal()
         setTimeout(function() {wagerDisplay.innerText =`Your wager is: ${wager}`}, 500)
